@@ -19,11 +19,11 @@ const manageRoom = (RFID, roomID) => {
       let patient;
 
       // Retrieve the right patient
-      patients.forEach((p) => {
-        if(p.rfid === RFID) {
-          patient = p;
+      for(let p in patients) {
+        if(patients[p].rfid === RFID) {
+          patient = patients[p];
         }
-      })
+      }
 
       if(patient) {
         console.log('patient found', patient);
@@ -56,11 +56,11 @@ const manageStable = (RFID, isStable) => {
       let patient;
 
       // Retrieve the right patient
-      patients.forEach((p) => {
-        if(p.rfid === RFID) {
-          patient = p;
+      for(let p in patients) {
+        if(patients[p].rfid === RFID) {
+          patient = patients[p];
         }
-      })
+      }
 
       if(patient) {
 
