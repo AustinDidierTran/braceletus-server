@@ -6,7 +6,8 @@ const stabilityEnum = {
 
 }
 
-const manageRFID = (RFID, roomID) => {
+const manageRoom = (RFID, roomID) => {
+  console.log('managing room', RFID, roomID);
   // Create in history
   const obj = {
     RFID: RFID,
@@ -19,19 +20,14 @@ const manageRFID = (RFID, roomID) => {
   firebaseService.createObject('roomAccessHistory', obj)
 }
 
-const manageSignal = (fall, help, cancel, rfid) => {
+const manageStable = (RFID, isStable) => {
+  console.log('managing stable', RFID, isStable);
   // Fetch patient
   const patient = firebaseService.getPatientFromRFID(rfid);
 
   patient.$loaded().then((result) => {
     // Manage patient
-    if(fall || help) {
-      patient['isStable'] = stabilityEnum['instable'];
-    }
-
-    if(cancel) {
-      patient['isStable'] = stabilityEnum['stable'];
-    }
+    patient['isStable'] = isStable
 
     // Save patient
     patient.$save();
@@ -40,6 +36,6 @@ const manageSignal = (fall, help, cancel, rfid) => {
 }
 
 module.exports = {
-  manageRFID: manageRFID,
-  manageSignal: manageSignal
+  manageRoom: manageRoom,
+  manageStable: manageStable
 }

@@ -18,10 +18,18 @@ const wss = new SocketServer({ server });
 wss.on('connection', (ws) => {
   console.log('Client connected');
   ws.on('close', () => console.log('Client disconnected'));
-  ws.on('message', (e, s, d) => {
-    console.log(e);
-    console.log(s);
-    console.log(d);
+  ws.on('message', (data, flags) => {
+    console.log('message data:', data);
+
+    const datum = data.split(',');
+
+    console.log('split data', datum);
+
+    if(datum[0] == '0') {
+      braceletusService.manageStable(datum[1], datum[2]);
+    } else if(datum[0] == '1') {
+      braceletusService.manageRoom(datum[1], datum[2]);
+    }
   });
 });
 
