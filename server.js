@@ -3,6 +3,8 @@
 const express = require('express');
 const SocketServer = require('ws').Server;
 const path = require('path');
+const braceletusService = require('./server/braceletusService');
+
 
 const PORT = process.env.PORT || 3000;
 const INDEX = path.join(__dirname, 'index.html');
@@ -16,6 +18,9 @@ const wss = new SocketServer({ server });
 wss.on('connection', (ws) => {
   console.log('Client connected');
   ws.on('close', () => console.log('Client disconnected'));
+  ws.on('message', (e, s, d) => {
+    console.log(`${e}\n${s}\n${d}\n`);
+  });
 });
 
 setInterval(() => {
