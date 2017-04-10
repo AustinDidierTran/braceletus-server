@@ -32,7 +32,7 @@ const manageRoom = (RFID, roomID) => {
         const obj = {
           patientID: patientID_index,
           roomID: roomID,
-          time: new Date().toTimeString,
+          time: new Date().toTimeString(),
         };
 
         console.log('manageRFID', obj);
