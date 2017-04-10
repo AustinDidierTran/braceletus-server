@@ -27,7 +27,7 @@ const manageStable = (RFID, isStable) => {
 
   patient.$loaded().then((result) => {
     // Manage patient
-    patient['isStable'] = isStable
+    patient['isStable'] = isStable;
 
     // Save patient
     patient.$save();
