@@ -14,16 +14,31 @@ module.exports = {
   createObject: (key, obj, _callback) => {
     const ref = firebase.database().ref(key);
     const list = $firebaseArray(ref);
+    const newObjectKey = firebase.database().ref().child(key).push().key;
+    const updates = {};
+    updates[`${key}${newObjectKey}`] = obj;
+
+    return firebase.database().ref().update(updates);
     
-    return list.$add(obj);
   },
   getPatient: (id) => {
     const ref = firebase.database().ref('patients/' + id);
-    return $firebaseObject(ref);
+
+    return firebase.database().ref('/patients/' + id).once('value');
   },
   getPatientFromRFID: (rfid) => {
     var ref = firebase.database().ref('patients');
 
-    return $firebaseArray(ref.orderByChild('rfid').equalTo(rfid));
+    firebase.database().ref('/patients/').once('value').then((snapshot) => {
+      console.log(snapshot.val());
+
+      const patients = snapshot.val();
+
+      patients.forEach((patient) => {
+        if(patient.rfid === rfid) {
+          return patient;
+        }
+      })
+    });;
   }
 }

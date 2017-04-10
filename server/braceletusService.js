@@ -25,13 +25,10 @@ const manageStable = (RFID, isStable) => {
   // Fetch patient
   const patient = firebaseService.getPatientFromRFID(rfid);
 
-  patient.$loaded().then((result) => {
-    // Manage patient
-    patient['isStable'] = isStable;
-
-    // Save patient
-    patient.$save();
-  });
+  patient.then(function(snapshot) {
+      var username = snapshot.val().username;
+      // ...
+    });
   
 }
 
