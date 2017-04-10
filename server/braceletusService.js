@@ -1,4 +1,5 @@
 const firebaseService = require('./firebaseService');
+const firebase = require('firebase');
 
 const stabilityEnum = {
   stable: '01',
