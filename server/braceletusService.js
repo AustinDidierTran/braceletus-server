@@ -16,11 +16,13 @@ const manageRoom = (RFID, roomID) => {
 
       const patients = snapshot.val();
       let patient;
+      let patientID_index;
 
       // Retrieve the right patient
       for(let p in patients) {
         if(patients[p].rfid === RFID) {
           patient = patients[p];
+          patientID_index = p;
         }
       }
 
@@ -28,7 +30,7 @@ const manageRoom = (RFID, roomID) => {
         console.log('patient found', patient);
         // Create in history
         const obj = {
-          patientID: patient.id,
+          patientID: patientID_index,
           roomID: roomID,
           time: new Date().toTimeString,
         };
