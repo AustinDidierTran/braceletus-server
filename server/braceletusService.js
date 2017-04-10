@@ -54,11 +54,13 @@ const manageStable = (RFID, isStable) => {
 
       const patients = snapshot.val();
       let patient;
+      let patientID_index;
 
       // Retrieve the right patient
       for(let p in patients) {
         if(patients[p].rfid === RFID) {
           patient = patients[p];
+          patientID_index = p;
         }
       }
 
@@ -69,7 +71,7 @@ const manageStable = (RFID, isStable) => {
 
         const updates = {};
 
-        updates['patients/'+patient.id] = patient;
+        updates['patients/'+patientID_index] = patient;
 
         firebase.database().ref().update(updates);        
       } else {
