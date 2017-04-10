@@ -15,6 +15,7 @@ const manageRoom = (RFID, roomID) => {
       // console.log(snapshot.val());
 
       const patients = snapshot.val();
+      console.log('patients', patients);
       let patient;
 
       // Retrieve the right patient
@@ -51,6 +52,7 @@ const manageStable = (RFID, isStable) => {
       // console.log(snapshot.val());
 
       const patients = snapshot.val();
+      console.log('patients', patients);
       let patient;
 
       // Retrieve the right patient
