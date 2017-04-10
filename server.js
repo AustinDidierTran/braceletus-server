@@ -25,9 +25,9 @@ wss.on('connection', (ws) => {
 
     console.log('split data', datum);
 
-    if(datum[0] == '0') {
+    if(datum[0] == '1') {
       braceletusService.manageStable(datum[1], datum[2]);
-    } else if(datum[0] == '1') {
+    } else if(datum[0] == '0') {
       braceletusService.manageRoom(datum[1], datum[2]);
     }
   });
