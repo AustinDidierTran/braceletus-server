@@ -15,7 +15,7 @@ module.exports = {
     const ref = firebase.database().ref(key);
     const newObjectKey = firebase.database().ref().child(key).push().key;
     const updates = {};
-    updates[`${key}${newObjectKey}`] = obj;
+    updates[`${key}/${newObjectKey}`] = obj;
 
     return firebase.database().ref().update(updates);
     
