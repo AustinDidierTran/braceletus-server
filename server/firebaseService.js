@@ -26,19 +26,25 @@ module.exports = {
 
     return firebase.database().ref('/patients/' + id).once('value');
   },
+  getPatients: () => {
+    var ref = firebase.database().ref('patients');
+
+    return firebase.database().ref('/patients/');
+  },
   getPatientFromRFID: (rfid) => {
     var ref = firebase.database().ref('patients');
 
     firebase.database().ref('/patients/').once('value').then((snapshot) => {
-      console.log(snapshot.val());
+      // console.log(snapshot.val());
 
       const patients = snapshot.val();
 
       patients.forEach((patient) => {
         if(patient.rfid === rfid) {
+          console.log(patient);
           return patient;
         }
       })
-    });;
+    });
   }
 }
