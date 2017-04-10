@@ -18,7 +18,7 @@ const manageRoom = (RFID, roomID) => {
 
       // Retrieve the right patient
       patients.forEach((p) => {
-        if(p.rfid === rfid) {
+        if(p.rfid === RFID) {
           patient = p;
         }
       })
@@ -54,7 +54,7 @@ const manageStable = (RFID, isStable) => {
 
       // Retrieve the right patient
       patients.forEach((p) => {
-        if(p.rfid === rfid) {
+        if(p.rfid === RFID) {
           patient = p;
         }
       })
