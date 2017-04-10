@@ -13,7 +13,6 @@ module.exports = {
   app: firebase.initializeApp(firebaseConfig),
   createObject: (key, obj, _callback) => {
     const ref = firebase.database().ref(key);
-    const list = $firebaseArray(ref);
     const newObjectKey = firebase.database().ref().child(key).push().key;
     const updates = {};
     updates[`${key}${newObjectKey}`] = obj;
