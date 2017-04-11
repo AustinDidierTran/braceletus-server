@@ -26,6 +26,8 @@ const manageRoom = (RFID, roomID) => {
         }
       }
 
+      
+
       if(patient) {
         console.log('patient found', patient);
         // Create in history
@@ -38,6 +40,14 @@ const manageRoom = (RFID, roomID) => {
         console.log('manageRFID', obj);
 
         firebaseService.createObject('roomAccessHistory', obj)
+
+        const updates = {};
+
+        patient['location'] = roomID;
+
+        updates['patients/'+patientID_index] = patient;
+
+        firebase.database().ref().update(updates);
       } else {
         console.log('patient not found');
       }
